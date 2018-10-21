@@ -13,7 +13,7 @@ namespace WebExperience.Test.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201810211503229_InitialModel"; }
+            get { return "201810211548266_InitialModel"; }
         }
         
         string IMigrationMetadata.Source

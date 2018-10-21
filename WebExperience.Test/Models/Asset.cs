@@ -5,10 +5,10 @@ using System.Web;
 
 namespace WebExperience.Test.Models
 {
-    public class AssetModels
+    public class Asset
     {
         public int Id { get; set; }
-        public string Asset { get; set; }
+        public string AssetName { get; set; }
         public string Country { get; set; }
         public string MimeType { get; set; }
     }

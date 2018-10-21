@@ -73,9 +73,9 @@ namespace GeneralKnowledge.Test.App.Tests
             Console.WriteLine("parameter     LOW AVG  MAX");
             Console.WriteLine($"temperature {temperatures.Min()}  {Math.Round(temperatures.Average(),2)}    {temperatures.Max()}");
             Console.WriteLine($"pHs         {phs.Min()}  {Math.Round(phs.Average(),2)}    {phs.Max()}");
-            Console.WriteLine($"chlorides   {chlorides.Min()}  {chlorides.Average()}     {chlorides.Max()}");
-            Console.WriteLine($"phosphates  {phosphates.Min()}  {phosphates.Average()}    {phosphates.Max()}");
-            Console.WriteLine($"nitrates    {nitrates.Min()} {nitrates.Average()}     {nitrates.Max()}");
+            Console.WriteLine($"Chlorides   {chlorides.Min()}  {chlorides.Average()}     {chlorides.Max()}");
+            Console.WriteLine($"Phosphates  {phosphates.Min()}  {phosphates.Average()}    {phosphates.Max()}");
+            Console.WriteLine($"Nitrates    {nitrates.Min()} {nitrates.Average()}     {nitrates.Max()}");
 
         }
     }

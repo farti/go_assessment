@@ -5,7 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
+using AutoMapper;
+using WebExperience.Test.Dtos;
 using WebExperience.Test.Models;
 
 namespace WebExperience.Test.Controllers
@@ -27,13 +30,13 @@ namespace WebExperience.Test.Controllers
         }
 
         // GET /api/asets
-        public IEnumerable<Asset> GetAssets()
+        public IEnumerable<AssetDto> GetAssets()
         {
-            return _context.Assets.ToList();
+            return _context.Assets.ToList().Select(Mapper.Map<Asset, AssetDto>);
         }
 
         // GET /api/asets/1
-        public Asset GetAsset(int id)
+        public AssetDto GetAsset(int id)
         {
             var asset = _context.Assets.SingleOrDefault(a => a.Id == id);
 
@@ -42,27 +45,30 @@ namespace WebExperience.Test.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            return asset;
+            return Mapper.Map<Asset, AssetDto>(asset);
         }
 
         // POST /api/assets
         [HttpPost]
-        public Asset CreateAsset(Asset asset)
+        public AssetDto CreateAsset(AssetDto assetDto)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
+            var asset = Mapper.Map<AssetDto, Asset>(assetDto);
             _context.Assets.Add(asset);
             _context.SaveChanges();
 
-            return asset;
+            assetDto.Id = asset.Id;
+
+            return assetDto;
         }
 
         // PUT /api/assets/1
         [HttpPut]
-        public void UpdateAssets(int id, Asset asset)
+        public void UpdateAssets(int id, AssetDto assetDto)
         {
             if (!ModelState.IsValid)
             {
@@ -76,9 +82,7 @@ namespace WebExperience.Test.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            assetInDb.AssetName = asset.AssetName;
-            assetInDb.Country = asset.Country;
-            assetInDb.MimeType = asset.MimeType;
+            Mapper.Map(assetDto, assetInDb);
 
             _context.SaveChanges();
         }

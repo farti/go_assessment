@@ -15,7 +15,7 @@ namespace WebExperience.Test
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new AssetSeeder());
+            Database.SetInitializer<ApplicationDbContext>(new AssetSeeder());
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
 

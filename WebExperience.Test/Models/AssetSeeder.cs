@@ -1,6 +1,8 @@
-﻿using CsvHelper;
+﻿using System.Collections.Generic;
+using CsvHelper;
 using GeneralKnowledge.Test.App;
 using System.Data.Entity;
+using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
 
@@ -11,6 +13,15 @@ namespace WebExperience.Test.Models
         protected override void Seed(ApplicationDbContext context)
         {
 
+            GetAsset().ForEach(a => context.Assets.Add(a));
+
+            GetAssetFromCsv().ForEach(x => context.Assets.Add(x));
+
+            base.Seed(context);
+        }
+
+        private static List<Asset> GetAssetFromCsv()
+        {
             var csvFile = Resources.AssetImport;
 
             var stringReader = new StringReader(csvFile);
@@ -23,8 +34,27 @@ namespace WebExperience.Test.Models
                 .GetRecords<Asset>()
                 .ToList();
 
-            records.ForEach(x=> context.Assets.Add(x));
-            base.Seed(context);
+            return records;
+        }
+
+        private static List<Asset> GetAsset()
+        {
+            var asset = new List<Asset>
+            {
+                new Asset
+                {
+                    AssetName = "płyta",
+                    Country = "Polska",
+                    MimeType = "beton"
+                },
+                new Asset()
+                {
+                    AssetName = "rura",
+                    Country = "Piemcy",
+                    MimeType = "PCV"
+                }
+            };
+            return asset;
         }
     }
 }

@@ -5,23 +5,15 @@ using System.Data.Entity;
 using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
+using WebGrease.Css.Extensions;
 
 namespace WebExperience.Test.Models
 {
-    public class AssetSeeder : DropCreateDatabaseAlways<ApplicationDbContext>
+    public class AssetSeeder : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
 
-            GetAsset().ForEach(a => context.Assets.Add(a));
-
-            GetAssetFromCsv().ForEach(x => context.Assets.Add(x));
-
-            base.Seed(context);
-        }
-
-        private static List<Asset> GetAssetFromCsv()
-        {
             var csvFile = Resources.AssetImport;
 
             var stringReader = new StringReader(csvFile);
@@ -34,27 +26,12 @@ namespace WebExperience.Test.Models
                 .GetRecords<Asset>()
                 .ToList();
 
-            return records;
+            foreach (var record in records)
+            {
+                context.Assets.Add(record);
+            }
+            context.SaveChanges();
         }
 
-        private static List<Asset> GetAsset()
-        {
-            var asset = new List<Asset>
-            {
-                new Asset
-                {
-                    AssetName = "płyta",
-                    Country = "Polska",
-                    MimeType = "beton"
-                },
-                new Asset()
-                {
-                    AssetName = "rura",
-                    Country = "Piemcy",
-                    MimeType = "PCV"
-                }
-            };
-            return asset;
-        }
     }
 }

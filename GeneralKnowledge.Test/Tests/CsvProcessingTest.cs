@@ -37,7 +37,7 @@ namespace GeneralKnowledge.Test.App.Tests
 
             var records = csv.GetRecords<AssetModels>();
 
-            // uncomment for pront result:
+            // uncomment for print result:
             //foreach (var data in records)
             //    {
             //        Console.WriteLine($"Asset: {data.Asset} , Country: {data.Country} , Type: {data.MimeType}");

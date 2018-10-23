@@ -1,0 +1,51 @@
+﻿@model WebExperience.Test.Models.Asset
+
+@{
+    ViewBag.Title = "Details";
+}
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Asset Details</h3>
+                </div>
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AssetName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.AssetName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Country)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Country)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.MimeType)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.MimeType)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

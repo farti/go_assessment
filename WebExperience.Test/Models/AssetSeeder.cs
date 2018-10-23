@@ -9,7 +9,7 @@ using WebGrease.Css.Extensions;
 
 namespace WebExperience.Test.Models
 {
-    public class AssetSeeder : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    public class AssetSeeder : DropCreateDatabaseAlways<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

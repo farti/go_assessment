@@ -1,12 +1,9 @@
-## go_assessment
+## GeneralKnowledge.Test
+
 * String manipulations : done
 * Data retrieval from a XML file : done
 * Image manipulations : done  ( Images are saving to C:\MyImages\ )
 * Processing a CSV file : done
-
-## GeneralKnowledge.Test
-
-*
 
 ## WebExperience.Test
 

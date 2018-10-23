@@ -32,29 +32,32 @@ namespace WebExperience.Test.Controllers
         // GET /api/asets
         public IEnumerable<AssetDto> GetAssets()
         {
-            return _context.Assets.ToList().Select(Mapper.Map<Asset, AssetDto>);
+            return _context.Assets
+                .ToList()
+                .Select(Mapper.Map<Asset, AssetDto>);
         }
 
         // GET /api/asets/1
-        public AssetDto GetAsset(int id)
+        public IHttpActionResult GetAsset(int id)
         {
-            var asset = _context.Assets.SingleOrDefault(a => a.Id == id);
+            var asset = _context.Assets
+                .SingleOrDefault(a => a.Id == id);
 
             if (asset == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
-            return Mapper.Map<Asset, AssetDto>(asset);
+            return Ok(Mapper.Map<Asset, AssetDto>(asset));
         }
 
         // POST /api/assets
         [HttpPost]
-        public AssetDto CreateAsset(AssetDto assetDto)
+        public IHttpActionResult CreateAsset(AssetDto assetDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
             var asset = Mapper.Map<AssetDto, Asset>(assetDto);
@@ -63,43 +66,54 @@ namespace WebExperience.Test.Controllers
 
             assetDto.Id = asset.Id;
 
-            return assetDto;
+            return Created(new Uri(Request.RequestUri + "/" + asset.Id), assetDto  );
         }
 
         // PUT /api/assets/1
         [HttpPut]
-        public void UpdateAssets(int id, AssetDto assetDto)
+        public IHttpActionResult UpdateAssets(int id, AssetDto assetDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
 
-            var assetInDb = _context.Assets.SingleOrDefault(a => a.Id == id);
+            var assetInDb = _context.Assets
+                .SingleOrDefault(a => a.Id == id);
 
+            if (id != assetDto.Id)
+            {
+                return BadRequest();
+            }
+            
             if (assetInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             Mapper.Map(assetDto, assetInDb);
 
             _context.SaveChanges();
+
+            return Ok();
         }
 
         // DELETE /api/assets/1
         [HttpDelete]
-        public void DeleteAsset(int id)
+        public IHttpActionResult DeleteAsset(int id)
         {
-            var assetInDb = _context.Assets.SingleOrDefault(a => a.Id == id);
+            var assetInDb = _context.Assets
+                .SingleOrDefault(a => a.Id == id);
 
             if (assetInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             _context.Assets.Remove(assetInDb);
             _context.SaveChanges();
+
+            return Ok();
         }
     }
 }

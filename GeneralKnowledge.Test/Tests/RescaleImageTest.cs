@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
@@ -26,6 +27,7 @@ namespace GeneralKnowledge.Test.App.Tests
             // Install-Package ImageLibrary
             // https://www.nuget.org/packages/ImageLibrary/
 
+            Directory.CreateDirectory(@"C:\MyImages");
 
             var image = new KalikoImage(@"https://web.usask.ca/images/homer.jpg");
             image.SaveJpg(@"C:\MyImages\org.jpg", 99);

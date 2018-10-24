@@ -35,6 +35,7 @@ namespace WebExperience.Test.Controllers
         public async Task<IEnumerable<Asset>> GetAssets()
         {
             var assets = await _context.Assets
+                .AsNoTracking()
                 .ToListAsync();
 
             return assets;

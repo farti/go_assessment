@@ -8,7 +8,6 @@
 ## WebExperience.Test
 
 * Nie użyłem Angulara ... mogę się poprawić , ale potrzebuję trochę więcej czasu ...
-* skróciłem plik źródłowy , ale z pełnym też działa :D
 
 * C# MVC 
 * Web API 

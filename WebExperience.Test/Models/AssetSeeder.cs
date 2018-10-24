@@ -26,11 +26,15 @@ namespace WebExperience.Test.Models
                 .GetRecords<Asset>()
                 .ToList();
 
+            context.Configuration.AutoDetectChangesEnabled = false;
+
             foreach (var record in records)
             {
                 context.Assets.Add(record);
             }
+
             context.SaveChanges();
+            
         }
 
     }

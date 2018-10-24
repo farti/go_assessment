@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Http;
@@ -30,18 +32,19 @@ namespace WebExperience.Test.Controllers
         }
 
         // GET /api/asets
-        public IEnumerable<AssetDto> GetAssets()
+        public async Task<IEnumerable<Asset>> GetAssets()
         {
-            return _context.Assets
-                .ToList()
-                .Select(Mapper.Map<Asset, AssetDto>);
+            var assets = await _context.Assets
+                .ToListAsync();
+
+            return assets;
         }
 
         // GET /api/asets/1
-        public IHttpActionResult GetAsset(int id)
+        public async Task<IHttpActionResult> GetAsset(int id)
         {
-            var asset = _context.Assets
-                .SingleOrDefault(a => a.Id == id);
+            var asset = await _context.Assets
+                .SingleOrDefaultAsync(a => a.Id == id);
 
             if (asset == null)
             {
@@ -53,7 +56,7 @@ namespace WebExperience.Test.Controllers
 
         // POST /api/assets
         [HttpPost]
-        public IHttpActionResult CreateAsset(AssetDto assetDto)
+        public async Task<IHttpActionResult> CreateAsset(AssetDto assetDto)
         {
             if (!ModelState.IsValid)
             {
@@ -62,30 +65,30 @@ namespace WebExperience.Test.Controllers
 
             var asset = Mapper.Map<AssetDto, Asset>(assetDto);
             _context.Assets.Add(asset);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             assetDto.Id = asset.Id;
 
-            return Created(new Uri(Request.RequestUri + "/" + asset.Id), assetDto  );
+            return Created(new Uri(Request.RequestUri + "/" + asset.Id), assetDto);
         }
 
         // PUT /api/assets/1
         [HttpPut]
-        public IHttpActionResult UpdateAssets(int id, AssetDto assetDto)
+        public async Task<IHttpActionResult> UpdateAssets(int id, AssetDto assetDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var assetInDb = _context.Assets
-                .SingleOrDefault(a => a.Id == id);
+            var assetInDb = await _context.Assets
+                .SingleOrDefaultAsync(a => a.Id == id);
 
             if (id != assetDto.Id)
             {
                 return BadRequest();
             }
-            
+
             if (assetInDb == null)
             {
                 return NotFound();
@@ -93,17 +96,17 @@ namespace WebExperience.Test.Controllers
 
             Mapper.Map(assetDto, assetInDb);
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok();
         }
 
         // DELETE /api/assets/1
         [HttpDelete]
-        public IHttpActionResult DeleteAsset(int id)
+        public async Task<IHttpActionResult> DeleteAsset(int id)
         {
-            var assetInDb = _context.Assets
-                .SingleOrDefault(a => a.Id == id);
+            var assetInDb = await _context.Assets
+                .SingleOrDefaultAsync(a => a.Id == id);
 
             if (assetInDb == null)
             {
@@ -111,7 +114,7 @@ namespace WebExperience.Test.Controllers
             }
 
             _context.Assets.Remove(assetInDb);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
 
             return Ok();
         }

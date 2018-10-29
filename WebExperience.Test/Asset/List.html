@@ -22,12 +22,12 @@
         </thead>
         <tbody>
         <tr ng-repeat="item in asset">
-            <td>{{ item.Id }}</td>
-            <td><a href="#/edit/{{item.Id}}" >{{ item.AssetName }}</a></td>
-            <td>{{ item.Country }}</td>
-            <td>{{ item.MimeType }}</td>
+            <td>{{ item.id }}</td>
+            <td><a href="#/edit/{{item.Id}}" >{{ item.assetName }}</a></td>
+            <td>{{ item.country }}</td>
+            <td>{{ item.mimeType }}</td>
             <td>
-                <a href="#/delete/{{item.Id}}" class="btn btn-danger btn-xs">Delete</a>
+                <a href="#/delete/{{item.id}}" class="btn btn-danger btn-xs">Delete</a>
             </td>
         </tr>
         </tbody>

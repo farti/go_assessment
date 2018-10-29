@@ -1,0 +1,31 @@
+﻿<h3>Are you want to sure to delete this record?</h3>
+<hr />
+<form role="form" style="max-width: 500px;">
+    <div class="form-group">
+        <label for="assetname">
+            Asset Name
+        </label>
+        <p class="form-control-static">{{assetname}}</p>
+    </div>
+    <div class="form-group">
+        <label for="country">
+            Country:
+        </label>
+        <p class="form-control-static">{{country}}</p>
+
+    </div>
+    <div class="form-group">
+        <label for="mimetype">
+            Mime Type:
+        </label>
+        <p class="form-control-static">{{mimetype}}</p>
+
+    </div>
+
+    <a href="#/list" class="btn btn-info btn-sm">
+        Back to List
+    </a>
+    <button type="submit" class="btn btn-success btn-sm" ng-click="save()">
+        Submit
+    </button>
+</form> 

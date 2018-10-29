@@ -197,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset\Edit.html" />
+    <Content Include="Asset\HtmlPage1.html" />
     <Content Include="Asset\List.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

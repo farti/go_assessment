@@ -308,6 +308,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\ng-table.css" />
+    <Content Include="Content\ng-table.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -317,6 +319,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\ng-table.min.css.map" />
+    <Content Include="Content\ng-table.css.map" />
     <None Include="packages.config" />
     <Content Include="Resources\AssetImport.csv" />
     <Content Include="Scripts\angular-animate.js" />
@@ -1175,6 +1179,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ng-table.js" />
+    <Content Include="Scripts\ng-table.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -1207,6 +1213,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Scripts\ng-table.min.js.map" />
+    <Content Include="Scripts\ng-table.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

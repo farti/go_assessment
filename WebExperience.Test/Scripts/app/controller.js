@@ -6,25 +6,45 @@ AssetControllers.controller("ListController", ['$scope', '$http',
     function ($scope, $http) {
         $http.get('/api/asset').success(function (data) {
             $scope.asset = data;
+
         });
     }]
 );
 
+// AngularJS Change Path Without Reloading
+myApp.run([
+    '$route', '$rootScope', '$location', function($route, $rootScope, $location) {
+        var original = $location.path;
+        $location.path = function(path, reload) {
+            if (reload === false) {
+                var lastRoute = $route.current;
+                var un = $rootScope.$on('$locationChangeSuccess',
+                    function() {
+                        $route.current = lastRoute;
+                        un();
+                    });
+            }
+            return original.apply($location, [path]);
+        };
+    }
+]);
+
+
 // this controller call the api method and display the record of selected assets
-// in delete.html and provide an option for delete
+// in delete.html and provide an option for DELETE
 AssetControllers.controller("DeleteController", ['$scope', '$http', '$routeParams', '$location',
     function ($scope, $http, $routeParams, $location) {
 
         $scope.id = $routeParams.id;
-        $http.get('/api/asset/' + $routeParams.id).success(function (data) {
-            $scope.assetname = data.AssetName;
-            $scope.country = data.Country;
-            $scope.mimetype = data.MimeType;
+        $http.get('/api/asset/' + $routeParams.id, false).success(function (data) {
+            $scope.assetName = data.assetName;
+            $scope.country = data.country;
+            $scope.mimeType = data.mimeType;
         });
 
         $scope.delete = function () {
 
-            $http.delete('/api/asset/' + $scope.id).success(function (data) {
+            $http.delete('/api/asset/' + $scope.id, false).success(function (data) {
                 $location.path('/list');
             }).error(function (data) {
                 $scope.error = "An error has occured while deleting asset! " + data;
@@ -42,10 +62,10 @@ AssetControllers.controller("EditController", ['$scope', '$filter', '$http', '$r
         $scope.save = function () {
 
             var obj = {
-                Id: $scope.id,
-                AssetName: $scope.assetname,
-                Country: $scope.country,
-                MimeType: $scope.mimetype,
+                id: $scope.id,
+                assetName: $scope.assetName,
+                country: $scope.country,
+                mimeType: $scope.mimeType,
             };
 
             if ($scope.id == 0) {
@@ -73,11 +93,11 @@ AssetControllers.controller("EditController", ['$scope', '$filter', '$http', '$r
             $scope.title = "Edit Asset";
 
             $http.get('/api/asset/' + $routeParams.id).success(function (data) {
-                $scope.assetname = data.AssetName;
-                $scope.country = data.Country;
-                $scope.mimetype = data.MimeType;
+                $scope.assetName = data.assetName;
+                $scope.country = data.country;
+                $scope.mimeType = data.mimeType;
 
-                $scope.getStates();
+                $scope.getState();
             });
         }
         else {
@@ -85,3 +105,4 @@ AssetControllers.controller("EditController", ['$scope', '$filter', '$http', '$r
         }
     }
 ]);
+

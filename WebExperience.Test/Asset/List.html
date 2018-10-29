@@ -21,9 +21,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in asset">
-            <td>{{ item.id }}</td>
-            <td><a href="#/edit/{{item.Id}}" >{{ item.assetName }}</a></td>
+        <tr ng-repeat="item in asset | orderBy:'assetName'">
+            <td >{{ item.id }}</td>
+            <td title="'Asset Name'" filter="{ assetname: 'text'}" sortable="'assetname'">
+                <a href="#/edit/{{item.id}}">{{ item.assetName }}</a>
+            </td>
             <td>{{ item.country }}</td>
             <td>{{ item.mimeType }}</td>
             <td>

@@ -1,9 +1,9 @@
 ﻿var myApp = angular.module('myApp', [
     'ngRoute',
-    'EmpControllers'
+    'AssetControllers'
 ]);
 
-EmpApp.config(['$routeProvider', function ($routeProvider) {
+myApp.config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider
         .when('/list', {
@@ -23,8 +23,8 @@ EmpApp.config(['$routeProvider', function ($routeProvider) {
             controller: 'DeleteController'
         }).
         otherwise({
-            redirectTo: '/list',
-            controller: 'ListController'
+            redirectTo: '/list'
+
         });
 
 }]);

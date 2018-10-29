@@ -34,7 +34,7 @@ namespace WebExperience.Test.Models
             }
 
             context.SaveChanges();
-            
+            base.Seed(context);
         }
 
     }

@@ -1,0 +1,32 @@
+﻿<h3>
+    {{ title }}
+</h3>
+<hr />
+<form role="form" style="max-width: 500px;">
+    <strong class="error">{{ error }}</strong>
+    <div class="form-group">
+        <label for="assetname">
+            Asset Name
+        </label>
+        <input type="text" class="form-control" id="assetname" ng-model="assetname" />
+    </div>
+    <div class="form-group">
+        <label for="country">
+            Country:
+        </label>
+        <input type="text" class="form-control" id="country" ng-model="country" />
+    </div>
+    <div class="form-group">
+        <label for="mimetype">
+            Mime Type:
+        </label>
+        <input type="text" class="form-control" id="mimetype" ng-model="mimetype" />
+    </div>
+
+    <a href="#/list" class="btn btn-info btn-sm">
+        Back to List
+    </a>
+    <button type="submit" class="btn btn-success btn-sm" ng-click="save()">
+        Submit
+    </button>
+</form> 

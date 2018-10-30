@@ -7,13 +7,13 @@
 
 ## WebExperience.Test
 
-* Nie użyłem Angulara ... mogę się poprawić , ale potrzebuję trochę więcej czasu ...
-
+* Start page: http://localhost:******/#/list
 * C# MVC 
 * Web API 
 * Entity Framework (with Code First)
 * MS SQL
 * AutoMaper
-* jQuery-dataTable
+* Angular
+* Bootstrap
 * Font Awesome
 

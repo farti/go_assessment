@@ -82,24 +82,41 @@ namespace WebExperience.Test.Controllers
                 return BadRequest();
             }
 
-            var assetInDb = await _context.Assets
-                .SingleOrDefaultAsync(a => a.Id == id);
-
             if (id != assetDto.Id)
             {
                 return BadRequest();
             }
 
+            var assetInDb = await _context.Assets.SingleOrDefaultAsync(a => a.Id == id);
+            
             if (assetInDb == null)
             {
-                return NotFound();
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
             Mapper.Map(assetDto, assetInDb);
 
             await _context.SaveChangesAsync();
 
-            return Ok();
+            return StatusCode(HttpStatusCode.NoContent);
+
+        }
+
+        // PUT api/employee/5
+        public HttpResponseMessage Put(Asset model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, model);
+                return response;
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
 
         // DELETE /api/assets/1

@@ -3,7 +3,7 @@
     <br />
 </div>
 <div>
-    <a href="#/create" class="btn btn-success btn-sm">Create</a>
+    <a href="#/create" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i></a>
     <br />
 </div>
 <div>
@@ -23,13 +23,13 @@
         <tbody>
         <tr ng-repeat="item in asset | orderBy:'assetName'">
             <td >{{ item.id }}</td>
-            <td title="'Asset Name'" filter="{ assetname: 'text'}" sortable="'assetname'">
+            <td>
                 <a href="#/edit/{{item.id}}">{{ item.assetName }}</a>
             </td>
             <td>{{ item.country }}</td>
             <td>{{ item.mimeType }}</td>
             <td>
-                <a href="#/delete/{{item.id}}" class="btn btn-danger btn-xs">Delete</a>
+                <a href="#/delete/{{item.id}}" class="btn btn-danger btn-xs"><i class="far fa-trash-alt"></i></a>
             </td>
         </tr>
         </tbody>

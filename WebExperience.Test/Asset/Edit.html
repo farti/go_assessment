@@ -1,9 +1,13 @@
-﻿<h3>
-    {{ title }}
-</h3>
+﻿<div>
+    <h3>
+        {{ title }}
+    </h3>
+</div>
 <hr />
 <form role="form" style="max-width: 500px;">
-    <strong class="error">{{ error }}</strong>
+    <div>
+        <strong class="error">{{ error }}</strong>
+    </div>
     <div class="form-group">
         <label for="assetName">
             Asset Name
@@ -29,5 +33,5 @@
     <button type="submit" class="btn btn-success btn-sm" ng-click="save()">
         Submit
     </button>
-</form> 
+</form>
 

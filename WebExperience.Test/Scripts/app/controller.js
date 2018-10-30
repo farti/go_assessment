@@ -11,25 +11,6 @@ AssetControllers.controller("ListController", ['$scope', '$http',
     }]
 );
 
-// AngularJS Change Path Without Reloading
-myApp.run([
-    '$route', '$rootScope', '$location', function($route, $rootScope, $location) {
-        var original = $location.path;
-        $location.path = function(path, reload) {
-            if (reload === false) {
-                var lastRoute = $route.current;
-                var un = $rootScope.$on('$locationChangeSuccess',
-                    function() {
-                        $route.current = lastRoute;
-                        un();
-                    });
-            }
-            return original.apply($location, [path]);
-        };
-    }
-]);
-
-
 // this controller call the api method and display the record of selected assets
 // in delete.html and provide an option for DELETE
 AssetControllers.controller("DeleteController", ['$scope', '$http', '$routeParams', '$location',
@@ -44,7 +25,7 @@ AssetControllers.controller("DeleteController", ['$scope', '$http', '$routeParam
 
         $scope.delete = function () {
 
-            $http.delete('/api/asset/' + $scope.id, false).success(function (data) {
+            $http.delete('/api/asset/' + $scope.id).success(function (data) {
                 $location.path('/list');
             }).error(function (data) {
                 $scope.error = "An error has occured while deleting asset! " + data;
@@ -65,7 +46,7 @@ AssetControllers.controller("EditController", ['$scope', '$filter', '$http', '$r
                 id: $scope.id,
                 assetName: $scope.assetName,
                 country: $scope.country,
-                mimeType: $scope.mimeType,
+                mimeType: $scope.mimeType
             };
 
             if ($scope.id == 0) {
@@ -82,7 +63,7 @@ AssetControllers.controller("EditController", ['$scope', '$filter', '$http', '$r
                     $location.path('/list');
                 }).error(function (data) {
                     console.log(data);
-                    $scope.error = "An Error has occured while Saving customer! " + data.ExceptionMessage;
+                    $scope.error = "An Error has occured while Saving asset! " + data.ExceptionMessage;
                 });
             }
         }
@@ -96,8 +77,6 @@ AssetControllers.controller("EditController", ['$scope', '$filter', '$http', '$r
                 $scope.assetName = data.assetName;
                 $scope.country = data.country;
                 $scope.mimeType = data.mimeType;
-
-                $scope.getState();
             });
         }
         else {

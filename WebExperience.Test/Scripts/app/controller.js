@@ -17,6 +17,11 @@ AssetControllers.controller("ListController", ['$scope', '$http',
             }
         }
 
+        //show details
+        $scope.showDetails = function (item) {
+            $scope.item = item;
+            $('#myModal').modal('show');
+        }
     }]
 );
 

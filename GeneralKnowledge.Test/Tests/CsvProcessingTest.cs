@@ -36,7 +36,7 @@ namespace GeneralKnowledge.Test.App.Tests
 
 
             var records = csv.GetRecords<AssetModels>();
-
+            Console.WriteLine($"Stored {records.Count()} records.");
             // uncomment for print result:
             //foreach (var data in records)
             //    {

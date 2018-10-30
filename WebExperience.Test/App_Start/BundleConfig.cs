@@ -13,7 +13,8 @@ namespace WebExperience.Test
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.datatables.js",
-                        "~/Scripts/DataTables/datatables.bootstrap.js"
+                        "~/Scripts/DataTables/datatables.bootstrap.js",
+                        "~/Scripts/smart-table.js"
                     ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

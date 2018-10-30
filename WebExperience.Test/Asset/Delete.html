@@ -3,7 +3,8 @@
 <form class="form-horizontal" style="max-width: 500px;">
     <div class="form-group">
         <label class="control-label col-xs-3">
-            Asset Name :</label>
+            Asset Name :
+        </label>
         <div class="col-xs-9">
             <p class="form-control-static">
                 {{ assetName }}
@@ -12,7 +13,8 @@
     </div>
     <div class="form-group">
         <label class="control-label col-xs-3">
-            Country :</label>
+            Country :
+        </label>
         <div class="col-xs-9">
             <p class="form-control-static">
                 {{ country }}
@@ -21,19 +23,20 @@
     </div>
     <div class="form-group">
         <label class="control-label col-xs-3">
-            Mime Type :</label>
+            Mime Type :
+        </label>
         <div class="col-xs-9">
             <p class="form-control-static">
                 {{ mimeType }}
             </p>
         </div>
     </div>
-   
     <div class="form-group">
-        <div class="col-xs-offset-3 col-xs-9 text-center">
-            <a href="#/list" class="btn btn-info">Back to List</a>
-            <button type="submit" class="btn btn-primary" ng-click="delete()">
-                Delete</button>
+        <div class="col-xs-9 ">
+            <a href="#/list" class="btn btn-info btn-sm">Back to List</a>
+            <button type="submit" class="btn btn-danger btn-sm" ng-click="delete()">
+                Delete
+            </button>
         </div>
     </div>
 </form>

@@ -8,6 +8,15 @@ AssetControllers.controller("ListController", ['$scope', '$http',
             $scope.asset = data;
 
         });
+
+        //remove to the real data holder
+        $scope.removeItem = function removeItem(item) {
+            var index = $scope.asset.indexOf(item);
+            if (index !== -1) {
+                $scope.asset.splice(index, 1);
+            }
+        }
+
     }]
 );
 

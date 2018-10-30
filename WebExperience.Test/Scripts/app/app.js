@@ -1,6 +1,7 @@
 ﻿var myApp = angular.module('myApp', [
     'ngRoute',
-    'AssetControllers'
+    'AssetControllers',
+    'smart-table'
 ]);
 
 myApp.config(['$routeProvider', function ($routeProvider) {

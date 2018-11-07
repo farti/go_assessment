@@ -31,11 +31,12 @@ namespace GeneralKnowledge.Test.App.Tests
             var stringReader = new StringReader(csvFile);
 
             var csv = new CsvReader(stringReader);
+
             csv.Configuration.RegisterClassMap<CsvAssetMapp>();
             csv.Configuration.HasHeaderRecord = true;
-
-
+            
             var records = csv.GetRecords<AssetModels>();
+
             Console.WriteLine($"Stored {records.Count()} records.");
             // uncomment for print result:
             //foreach (var data in records)

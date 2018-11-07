@@ -25,7 +25,7 @@ namespace GeneralKnowledge.Test.App.Tests
 
 
             // Install-Package ImageLibrary
-            // https://www.nuget.org/packages/ImageLibrary/
+            // http://kaliko.com/image-library/
 
             Directory.CreateDirectory(@"C:\MyImages");
 
